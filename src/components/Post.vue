@@ -59,7 +59,18 @@
 
 <script>
 export default {
-    name: 'post'
+    name: 'post',
+    mounted() {
+        this.$el.addEventListener('scroll', function(){
+            let scrollTop = this.$el.scrollTop
+            let clientHeight = this.$el.clientHeight
+            let scrollHeight = this.$el.scrollHeight
+
+            let scrollPercent = Math.round((scrollTop) / (scrollHeight - clientHeight)*100)
+
+            this.$emit('progressUpdate', scrollPercent)
+        }.bind(this));
+    }
 }
 </script>
 
@@ -68,24 +79,28 @@ article {
     width: 100%;
     flex: 1 1 100%;
     max-height: calc(100vh - 80px);
-    background: crimson;
+    background: #ADAAA1;
     overflow: scroll;
 }
-article .content{
+
+article .content {
     padding: 25px;
 }
-article .content h2{
+
+article .content h2 {
     font-size: 32px;
     font-weight: 900;
     margin-bottom: 10px;
 }
-article .content h3{
+
+article .content h3 {
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 30px;
 }
-article .content p{
-    color: #313131 ;
+
+article .content p {
+    color: #313131;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;

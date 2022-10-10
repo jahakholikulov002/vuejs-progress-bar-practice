@@ -11,8 +11,8 @@
           <a href="#">Portfolio</a>
         </nav>
       </div>
-      <Progressbar />
-      <Post />
+      <Progressbar :progress="progress"/>
+      <Post @progressUpdate="setProgress" />
     </main>
 
   </div>
@@ -27,6 +27,16 @@ export default {
   components:{
     Post,
     Progressbar,
+  },
+  data(){
+    return{
+      progress: 0
+    }
+  },
+  methods:{
+    setProgress(progress){
+      this.progress = progress
+    }
   }
 }
 </script>
@@ -55,7 +65,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000;
+  background: #002337;
   padding: 30px;
 }
 header h1{
